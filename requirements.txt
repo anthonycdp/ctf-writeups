@@ -1,0 +1,24 @@
+# CTF Writeups - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web Challenges
+flask>=2.3.0
+requests>=2.31.0
+
+# Cryptography
+pycryptodome>=3.19.0
+
+# Image Processing & Steganography
+pillow>=10.0.0
+
+# Network Forensics
+scapy>=2.5.0
+
+# Binary Exploitation (optional but recommended)
+pwntools>=4.11.0
+
+# Utilities
+colorama>=0.4.0
+
+# Testing
+pytest>=7.4.0

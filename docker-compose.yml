@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # Web Challenges
+  sql-injection:
+    build:
+      context: ./web/sql-injection-101
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    container_name: ctf-sqli
+    restart: unless-stopped
+
+  xss-filter:
+    build:
+      context: ./web/xss-filter-bypass
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5000"
+    container_name: ctf-xss
+    restart: unless-stopped
+
+  # Binary/Pwn Challenge
+  buffer-overflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.binary
+    ports:
+      - "4444:4444"
+    container_name: ctf-buffer
+    restart: unless-stopped
+    privileged: true  # Required for debugging
+
+  # Crypto Challenge
+  weak-rsa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./crypto/weak-rsa:/challenge
+    container_name: ctf-rsa
+    command: python3 /challenge/challenge/setup.py
+
+  # Forensics Challenge
+  packet-analysis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./forensics/packet-analysis:/challenge
+    container_name: ctf-packet
+    command: tail -f /dev/null  # Keep container running
+
+  # Misc/Stego Challenge
+  steganography:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./misc/steganography-101:/challenge
+    container_name: ctf-stego
+    command: tail -f /dev/null  # Keep container running
+
+  # Reverse Engineering
+  license-checker:
+    build:
+      context: .
+      dockerfile: Dockerfile.reverse
+    container_name: ctf-license
+    command: /challenge/license_checker
+
+  # Development/Learning Container
+  ctf-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile.tools
+    volumes:
+      - .:/ctf-writeups
+    container_name: ctf-tools
+    stdin_open: true
+    tty: true
+    command: /bin/bash
