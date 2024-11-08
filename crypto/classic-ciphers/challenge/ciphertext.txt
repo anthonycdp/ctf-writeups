@@ -1,0 +1,37 @@
+# Classic Ciphers Challenge
+# A multi-layered encryption puzzle
+
+The flag has been encrypted using multiple classical ciphers.
+You need to decrypt each layer to reveal the final flag.
+
+## Layer 1: Caesar Cipher
+The first layer uses a Caesar cipher (shift cipher).
+Hint: Julius Caesar used shift of 3, but what if we use a different shift?
+
+Ciphertext:
+FRGH LV D VHFUHW PHVVDJH
+
+## Layer 2: Vigenère Cipher
+After decrypting layer 1, you'll find a hint for layer 2.
+The decrypted text from layer 1 contains the Vigenère key.
+
+Ciphertext:
+RlRL{Fdhdu_fdhvdu_lv_qrw_vhfuhw}
+
+## Layer 3: Substitution Cipher
+Each letter has been replaced with another letter.
+The mapping follows a specific pattern - can you find it?
+
+Hint: Look at the structure of the ciphertext.
+The word "the" appears frequently in English...
+Known plaintext: The flag format starts with CTF{
+
+Final Ciphertext:
+JEG{jsqyypj_jrdnex_bqyetrtz}
+
+## Instructions
+1. Solve each layer in order
+2. Each solution reveals the key or hint for the next layer
+3. The final flag format is: CTF{...}
+
+Good luck, cryptanalyst!
